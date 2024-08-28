@@ -7,10 +7,9 @@ export const runtime = 'edge'
 
 const app = new Hono().basePath('/api')
 
-
+app.use('*', clerkMiddleware())
 app.
     get('/hello',
-        clerkMiddleware(),
         (c) => {
         const auth = getAuth(c);
         if(!auth?.userId){
@@ -21,6 +20,7 @@ app.
         console.log('***8Auth****', auth)
         return c.json({
             message: 'Hello Next.js!',
+            userId: auth.userId
         })
     })
     .post("/",
