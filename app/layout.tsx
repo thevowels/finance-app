@@ -19,7 +19,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-    console.log('Root layout is used');
   return (
       <ClerkProvider afterSignOutUrl={"/"} >
         <html lang="en">

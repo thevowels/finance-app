@@ -6,7 +6,6 @@ type Props = {
 
 const DashboardLayout = ({children}: Props) =>{
 
-    console.log('Dashboard Layout is used')
     return(
         <>
             <Header/>
