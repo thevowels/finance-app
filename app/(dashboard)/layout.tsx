@@ -8,12 +8,12 @@ const DashboardLayout = ({children}: Props) =>{
 
     console.log('Dashboard Layout is used')
     return(
-        <>
+        <body className="min-h-screen flex flex-col">
             <Header/>
-            <main className="b g-sky-200">
+            <main className="flex-grow h-full bg- flex justify-center items-center">
                 {children}
             </main>
-        </>
+        </body>
     )
 }
 
