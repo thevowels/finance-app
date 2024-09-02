@@ -6,7 +6,7 @@ import {ArrowUpDown} from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox"
 import { InferResponseType} from "hono";
 import { client } from "@/lib/hono"
-import Actions from "@/app/(dashboard)/accounts/actions";
+import Actions from "@/app/(dashboard)/transactions/actions";
 import {format} from "date-fns";
 import {convertAmountFromMilliunits, formatCurrency} from "@/lib/utils";
 import {Badge} from "@/components/ui/badge";
