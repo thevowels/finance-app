@@ -2,7 +2,7 @@
 
 import { client } from "@/lib/hono"
 
- export const useGetTransactions = (id?:string) => {
+ export const useGetTransaction = (id?:string) => {
     const query = useQuery({
         enabled: !!id,
         queryKey: ["transaction", {id}],

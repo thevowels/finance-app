@@ -25,7 +25,7 @@ const formSchema = insertAccountSchema.pick({
 type FormValues = z.input<typeof formSchema>
 
 
-export const EditAccountSheet = () =>{
+export const EditTransactionSheet = () =>{
 
 
     const {isOpen, onClose, id} = useOpenAccount ();

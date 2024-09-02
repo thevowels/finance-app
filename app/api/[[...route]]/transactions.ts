@@ -37,9 +37,7 @@ const app = new Hono()
             const startDate = from ? parse(from, "yyyy-MM-dd", new Date()) : defaultFrom
 
             const endDate = to ? parse(to, 'yyyy-MM-dd', new Date()) : defaultTo
-
-
-
+            console.log('userId', auth.userId)
             const data = await db
                 .select({
                     id: transactions.id,
@@ -65,7 +63,7 @@ const app = new Hono()
                 )
                 .orderBy(transactions.date)
 
-
+            console.log(data)
             return c.json({data})
         })
     .get('/:id',

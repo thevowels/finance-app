@@ -17,6 +17,8 @@ export const useDeleteAccount = (id?:string) =>{
         onSuccess: () =>{
             queryClient.invalidateQueries({queryKey:["account",{id}]})
             queryClient.invalidateQueries({queryKey:["accounts"]})
+            queryClient.invalidateQueries({queryKey:["transactions"]})
+
             //TODO: Invalidate summary and transactions
             toast.success(`Account Deleted`)
         },
