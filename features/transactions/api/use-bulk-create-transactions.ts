@@ -21,7 +21,7 @@ export const useBulkCreateTransactions = () =>{
             //TODO: validate summaries
         },
         onError: () =>{
-            toast.error("Failed to delete Transactions")
+            toast.error("Failed to create Transactions")
         }
 
     })
