@@ -42,8 +42,8 @@ export const useConfirm = (
     const ConfirmationDialog = () =>(
         <Dialog open={promise !== null }>
             <DialogContent>
+                <DialogTitle>{title}</DialogTitle>
                 <DialogHeader>
-                    <DialogTitle>{title}</DialogTitle>
                     <DialogDescription>{message}</DialogDescription>
                 </DialogHeader>
                 <DialogFooter className="pt-2">

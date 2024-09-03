@@ -14,9 +14,36 @@ import {useNewTransaction} from "@/features/transactions/hooks/use-new-transacti
 import {useGetTransactions} from "@/features/transactions/api/use-get-transactions";
 import {useBulkDeleteTransactions} from "@/features/transactions/api/use-bulk-delete-transactions";
 import {columns} from "@/app/(dashboard)/transactions/columns";
+import {useState} from "react";
+import {UploadButton} from "@/app/(dashboard)/transactions/upload-button";
+import ImportCard from "@/app/(dashboard)/transactions/import-card";
+
+
+enum VARIANTS{
+    LIST = "LIST",
+    IMPORT = "IMPORT",
+}
+
+const INITIAL_IMPORT_RESULTS = {
+    data:[],
+    errors:[],
+    meta:{}
+}
 
 
 export default function TransactionsPage() {
+    const [variant, setVariant] = useState<VARIANTS>(VARIANTS.LIST)
+    const [ importResults, setImportResults] = useState(INITIAL_IMPORT_RESULTS);
+
+    const onUpload = (results: typeof INITIAL_IMPORT_RESULTS) => {
+        setImportResults(results);
+        console.log(importResults);
+        setVariant(VARIANTS.IMPORT);
+    }
+    const onCancelImport = ()=>{
+        setImportResults(INITIAL_IMPORT_RESULTS)
+        setVariant(VARIANTS.LIST)
+    }
 
     const newTransaction = useNewTransaction();
     const transactionsQuery = useGetTransactions();
@@ -44,6 +71,19 @@ export default function TransactionsPage() {
         )
     }
 
+    if( variant === VARIANTS.IMPORT){
+        return (
+            <>
+                <ImportCard
+                    data = {importResults.data}
+                    onCancel={onCancelImport}
+                    onSubmit = {() =>{}}
+
+                />
+            </>
+        )
+    }
+
     return (
         <div className="max-w-screen-2xl mx-auto w-full pb-10 lg:-mt-24 ">
             <Card className="border-none drop-shadow-sm">
@@ -51,12 +91,15 @@ export default function TransactionsPage() {
                     <CardTitle className="text-xl line-clamp-1">
                         Transaction History
                     </CardTitle>
-                    <Button
+                    <div className="flex gap-x-2 items-center">
+                    <Button size="sm"
                         onClick={newTransaction.onOpen}
                     >
                         <Plus className="size-4 mr-2"/>
                         Add New
                     </Button>
+                    <UploadButton onUpload={onUpload}/>
+                    </div>
                 </CardHeader>
                 <CardContent>
                     <DataTable columns={columns}
