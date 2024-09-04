@@ -1,6 +1,7 @@
 import {useQuery} from "@tanstack/react-query";
 import {useSearchParams} from "next/navigation";
 import { client } from "@/lib/hono"
+import { convertAmountFromMilliunits} from "@/lib/utils"
 
 export const useGetSummary = () => {
 
@@ -10,9 +11,9 @@ export const useGetSummary = () => {
     const accountId = params.get("accountId") || "";
 
     const query = useQuery({
-        queryKey: ["transactions", {from, to , accountId}],
+        queryKey: ["summary ", {from, to , accountId}],
         queryFn: async () =>{
-            const response = await client.api.transactions.$get({
+            const response = await client.api.summary.$get({
                 query:{
                     from,
                     to,
@@ -23,7 +24,21 @@ export const useGetSummary = () => {
                 throw new Error("Failed to get accounts.");
             }
             const {data} = await response.json();
-            return data;
+            return {
+                ...data,
+                incomeAmount: convertAmountFromMilliunits(data.incomeAmount),
+                expensesAmount: convertAmountFromMilliunits(data.incomeAmount),
+                remainingAmount: convertAmountFromMilliunits(data.incomeAmount),
+                categories: data.categories.map( (category) =>({
+                    ...category,
+                    value: convertAmountFromMilliunits(category.value),
+                })),
+                days: data.days.map( (day) =>({
+                    ...day,
+                    income: convertAmountFromMilliunits(day.income),
+                    expenses: convertAmountFromMilliunits(day.expenses),
+                }))
+            };
         }
     })
     return query;
