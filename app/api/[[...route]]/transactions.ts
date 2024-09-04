@@ -137,13 +137,7 @@ const app = new Hono()
             if(!auth?.userId){
                 return c.json({error: "Unauthorized" }, 401 )
             }
-            let values;
-            try{
-                values = c.req.valid('json')
-            }catch (e) {
-                console.log('Error on data', e)
-                return c.json({error: "Error in data"},400)
-            }
+            const values = c.req.valid('json')
 
             const data = await db
                 .insert(transactions)
