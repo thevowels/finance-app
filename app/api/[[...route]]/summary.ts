@@ -21,6 +21,32 @@ const app = new Hono()
             })
         ),
         async (c) => {
+            async function fetchFinancialData(
+                userId: string,
+                startDate: Date,
+                endDate: Date
+            ) {
+                return await db
+                    .select({
+                        income: sql`SUM(CASE WHEN ${sql`${transactions.amount}::numeric`} >= 0 THEN ${sql`${transactions.amount}::numeric`} ELSE 0 END)`.mapWith(Number),
+                        expenses: sql`SUM(CASE WHEN ${sql`${transactions.amount}::numeric`} < 0 THEN ${sql`${transactions.amount}::numeric`} ELSE 0 END)`.mapWith(Number),
+                        remaining: sql`SUM(${sql`${transactions.amount}::numeric`})`.mapWith(Number),
+                    })
+                    .from(transactions)
+                    .innerJoin(
+                        accounts,
+                        eq(transactions.accountId, accounts.id)
+                    )
+                    .where(
+                        and(
+                            accountId ? eq(transactions.accountId, accountId) : undefined,
+                            eq(accounts.userId, userId),
+                            gte(transactions.date, startDate),
+                            lte(transactions.date, endDate)
+                        )
+                    );
+            }
+
             try {
                 const auth = getAuth(c);
                 const { from, to, accountId } = c.req.valid("query");
@@ -39,31 +65,6 @@ const app = new Hono()
                 const lastPeriodStart = subDays(startDate, periodLength);
                 const lastPeriodEnd = subDays(endDate, periodLength);
 
-                async function fetchFinancialData(
-                    userId: string,
-                    startDate: Date,
-                    endDate: Date
-                ) {
-                    return await db
-                        .select({
-                            income: sql`SUM(CASE WHEN ${sql`${transactions.amount}::numeric`} >= 0 THEN ${sql`${transactions.amount}::numeric`} ELSE 0 END)`.mapWith(Number),
-                            expenses: sql`SUM(CASE WHEN ${sql`${transactions.amount}::numeric`} < 0 THEN ${sql`${transactions.amount}::numeric`} ELSE 0 END)`.mapWith(Number),
-                            remaining: sql`SUM(${sql`${transactions.amount}::numeric`})`.mapWith(Number),
-                        })
-                        .from(transactions)
-                        .innerJoin(
-                            accounts,
-                            eq(transactions.accountId, accounts.id)
-                        )
-                        .where(
-                            and(
-                                accountId ? eq(transactions.accountId, accountId) : undefined,
-                                eq(accounts.userId, userId),
-                                gte(transactions.date, startDate),
-                                lte(transactions.date, endDate)
-                            )
-                        );
-                }
 
                 const [currentPeriod] = await fetchFinancialData(
                     auth.userId,
