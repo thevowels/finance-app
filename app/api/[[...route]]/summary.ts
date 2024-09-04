@@ -21,11 +21,18 @@ const app = new Hono()
             })
         ),
         async (c) => {
+            const auth = getAuth(c);
+            const { from, to, accountId } = c.req.valid("query");
+
+            if (!auth?.userId) {
+                return c.json({ error: "Unauthorized" }, 401);
+            }
             async function fetchFinancialData(
                 userId: string,
                 startDate: Date,
                 endDate: Date
             ) {
+
                 return await db
                     .select({
                         income: sql`SUM(CASE WHEN ${sql`${transactions.amount}::numeric`} >= 0 THEN ${sql`${transactions.amount}::numeric`} ELSE 0 END)`.mapWith(Number),
@@ -48,12 +55,7 @@ const app = new Hono()
             }
 
             try {
-                const auth = getAuth(c);
-                const { from, to, accountId } = c.req.valid("query");
 
-                if (!auth?.userId) {
-                    return c.json({ error: "Unauthorized" }, 401);
-                }
 
                 const defaultTo = new Date();
                 const defaultFrom = subDays(defaultTo, 30);
