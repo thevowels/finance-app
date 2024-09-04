@@ -25,10 +25,11 @@ export function calculatePercentageChange(
     current:number,
     previous:number,
 ){
+    console.log(` calculate percentage************** ${current}, ${previous} *********`)
   if(previous == 0){
     return previous === current ? 0 : 100;
   }
-  return Number((((current - previous) / previous) * 100).toFixed(2));
+  return (((current - previous) / previous) * 100)
 }
 
 export function fillMissingDays(

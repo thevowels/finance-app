@@ -79,11 +79,11 @@ const app = new Hono()
                     lastPeriodEnd
                 );
 
-                const incomeChange = calculatePercentageChange(currentPeriod.income as number, lastPeriod.income as number);
+                const incomeChange = calculatePercentageChange(currentPeriod.income as number, Number(lastPeriod.income));
 
-                const expensesChange = calculatePercentageChange(currentPeriod.expenses as number, lastPeriod.expenses as number);
+                const expensesChange = calculatePercentageChange(currentPeriod.expenses as number, Number(lastPeriod.expenses));
 
-                const remainingChange = calculatePercentageChange(currentPeriod.remaining as number, lastPeriod.remaining as number);
+                const remainingChange = calculatePercentageChange(currentPeriod.remaining as number, Number(lastPeriod.remaining as number));
 
                 const category = await db
                     .select({
