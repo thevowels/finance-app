@@ -22,7 +22,7 @@ export default function CustomTooltip({active, payload}: any){
             <Separator/>
             <div className="p-2 px-3 space-y-1">
                 <div className="flex items-center justify-between gap-4">
-                    <div>
+                    <div className="flex items-center justify-between gap-4">
                         <div className="size-1.5 bg-blue-500 rounded-full"/>
                         <p className="text-sm text-muted-foreground">
                             Income
@@ -35,11 +35,11 @@ export default function CustomTooltip({active, payload}: any){
             </div>
             <Separator/>
             <div className="p-2 px-3 space-y-1">
-                <div className="flex items-center justify-between gap-4">
-                    <div>
-                        <div className="size-1.5 bg-blue-500 rounded-full"/>
-                        <p className="text-sm text-muted-foreground ">
-                            Income
+                <div className="flex items-center justify-between gap-4 ">
+                    <div className="flex items-center justify-between gap-4">
+                        <div className="size-1.5 bg-rose-500 rounded-full"/>
+                        <p className="text-sm text-muted-foreground text-rose-500">
+                            Expenses
                         </p>
                     </div>
                     <p className="text-sm text-right font-medium text-rose-500">

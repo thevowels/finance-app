@@ -23,6 +23,7 @@ import BarVariant from "@/components/bar-variant";
 import LineVariant from "@/components/line-variant";
 import {Button} from "@/components/ui/button";
 import {PieVariant} from "@/components/pie-variant";
+import {RadarVariant} from "@/components/radar-variant";
 
 
 type Props = {
@@ -88,7 +89,7 @@ export default function SpendingPie({ data = [] }: Props){
                             <div className="flex items-center">
                                 <Radar className = "size-4 mr-2 shrink-0" />
                                 <p className="line-clamp-1">
-                                    Line Chart
+                                    Radar Chart
                                 </p>
                             </div>
                         </SelectItem>
@@ -96,7 +97,7 @@ export default function SpendingPie({ data = [] }: Props){
                             <div className="flex items-center">
                                 <Target className = "size-4 mr-2 shrink-0" />
                                 <p className="line-clamp-1">
-                                    Bar Chart
+                                    Radial Chart
                                 </p>
                             </div>
                         </SelectItem>
@@ -115,7 +116,7 @@ export default function SpendingPie({ data = [] }: Props){
                     </div>
                 ) : (<>
                     {chart === chartType.pie && <PieVariant data={data}/>}
-                    {/*{chart === chartType.radar &&  <BarVariant data={data}/>}*/}
+                    {chart === chartType.radar &&  <RadarVariant data={data}/>}
                     {/*{chart === chartType.radial && <LineVariant data={data}/>}*/}
                 </>)}
 

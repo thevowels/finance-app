@@ -8,6 +8,7 @@ import {
 } from "recharts"
 
 import  { formatPercentage} from "@/lib/utils";
+import CategoryTooltip from "@/components/category-tooltip";
 
 const COLORS = ["#0062ff", "#12C6FF","#ff647f","#ff9354"]
 
@@ -54,6 +55,7 @@ export const PieVariant = ( {data}:Props) => {
                         )
                     }}
                 />
+                <Tooltip content={<CategoryTooltip/>}/>
                 <Pie
                     data = {data}
                     cx={"50%"}
