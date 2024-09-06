@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import {Button} from "@/components/ui/button";
+import {toast} from "sonner";
 
 
 const userCopy = () => {
@@ -10,10 +11,12 @@ const userCopy = () => {
     const handleCopy = () => {
         navigator.clipboard.writeText(textToCopy)
             .then(() => {
-                alert('Text copied to clipboard!');
+                toast.success('Text copied to clipboard!',{ duration: 1000,position: 'top-center',
+                });
             })
             .catch(err => {
-                console.error('Failed to copy text: ', err);
+                toast.error('Failed to copy text: ', { duration: 1000,position: 'top-center',
+                });
             });
     };
     handleCopy();
@@ -24,10 +27,12 @@ const passCopy = () => {
     const handleCopy = () => {
         navigator.clipboard.writeText(textToCopy)
             .then(() => {
-                alert('Text copied to clipboard!');
+                toast.success("Account Created",{ duration: 1000,position: 'top-center',
+                })
             })
             .catch(err => {
-                console.error('Failed to copy text: ', err);
+                toast.error('Failed to copy text: ',{ duration: 1000,position: 'top-center',
+                });
             });
     };
     handleCopy();
