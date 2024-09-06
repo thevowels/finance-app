@@ -17,13 +17,15 @@ import {
 } from "@/components/ui/select"
 
 import { useState} from "react"
-import {FileSearch, PieChart, Radar, Target} from "lucide-react";
+import {FileSearch, Loader2, PieChart, Radar, Target} from "lucide-react";
 import AreaVariant from "@/components/area-variant";
 import BarVariant from "@/components/bar-variant";
 import LineVariant from "@/components/line-variant";
 import {Button} from "@/components/ui/button";
 import {PieVariant} from "@/components/pie-variant";
 import {RadarVariant} from "@/components/radar-variant";
+import {RadialVariant} from "@/components/radial-variant";
+import {Skeleton} from "@/components/ui/skeleton";
 
 
 type Props = {
@@ -117,9 +119,25 @@ export default function SpendingPie({ data = [] }: Props){
                 ) : (<>
                     {chart === chartType.pie && <PieVariant data={data}/>}
                     {chart === chartType.radar &&  <RadarVariant data={data}/>}
-                    {/*{chart === chartType.radial && <LineVariant data={data}/>}*/}
+                    {chart === chartType.radial && <RadialVariant data={data}/>}
                 </>)}
 
+            </CardContent>
+        </Card>
+    )
+}
+
+export const SpendingPieLoading = () =>{
+    return(
+        <Card className="border-none drop-shadow-sm">
+            <CardHeader className="flex space-y-2 lg:space-y-0 lg:flex-row lg:items-center justify-between">
+                <Skeleton className="h-8 w-48"/>
+                <Skeleton className="h-8 lg:2-[120px] w-full"/>
+            </CardHeader>
+            <CardContent>
+                <div className="h-[350px] w-full flex items-center justify-center">
+                    <Loader2 className="h-6 w-6 text-slate-300 animate-spin"/>
+                </div>
             </CardContent>
         </Card>
     )
