@@ -6,6 +6,7 @@ import {
 } from "@/components/ui/card"
 import {FileSearch} from "lucide-react";
 import AreaVariant from "@/components/area-variant";
+import BarVariant from "@/components/bar-variant";
 
 
 type Props = {
@@ -48,7 +49,10 @@ export default function Chart({ data = [] }: Props){
                             No data for this Period
                         </p>
                     </div>
-                ) : (<AreaVariant data ={data}/>)}
+                ) : (<>
+                    {/*<AreaVariant data ={data}/>*/}
+                    <BarVariant data={data}/>
+                </>)}
             </CardContent>
         </Card>
     )
