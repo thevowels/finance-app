@@ -50,7 +50,7 @@ export default function DataGrid(){
                         value={data?.expensesAmount}
                         percentageChange={data?.expensesChange}
                         icon={FaArrowTrendDown}
-                        variant={"default"}
+                        variant={"danger"}
                         dateRange={dateRangeLabel}
                     />
                 </div>

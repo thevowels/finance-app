@@ -8,7 +8,7 @@ import {
     CartesianGrid,
 
 } from "recharts";
-
+import CustomTooltip from "@/components/custom-tooltip";
 
 
 type Props = {
@@ -43,6 +43,7 @@ export default function AreaVariant({data}: Props) {
                     tickMargin={16}
 
                     />
+                <Tooltip content={<CustomTooltip/>} />
                 <Area
                     type="monotone"
                     dataKey="income"
