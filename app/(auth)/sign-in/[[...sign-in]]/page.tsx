@@ -1,6 +1,8 @@
 import {ClerkLoaded, ClerkLoading, SignIn} from "@clerk/nextjs";
 import {Loader2} from "lucide-react";
 import Image from "next/image";
+import {Button} from "@/components/ui/button";
+import Credentials from "@/components/Credentials";
 
 const SignInPage = () =>{
     return (
@@ -13,6 +15,7 @@ const SignInPage = () =>{
                     <p className="text-base  text-[#7E8CA0]">
                         Log in or Create account to get back to your app.
                     </p>
+                    <Credentials/>
                 </div>
                 <div className="flex justify-center mt-10">
                     <ClerkLoading>
