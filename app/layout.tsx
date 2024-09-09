@@ -20,7 +20,7 @@ export const metadata: Metadata = {
         type: 'website',
         images: [
             {
-                url: 'https://www.example.com/shadcn-logo.png',
+                url: 'https://shadcn-finance.vercel.app/shadcn-logo.png',
                 width: 800,
                 height: 600,
                 alt: 'Shadcn Finance Logo',
