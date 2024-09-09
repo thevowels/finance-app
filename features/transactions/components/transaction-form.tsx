@@ -87,7 +87,7 @@ export const TransactionForm = ({
         <Form {...form}>
             <form
                 onSubmit={form.handleSubmit(handleSubmit)}
-                className="space-y-4 pt-4"
+                className="space-y-4 pt-4 overflow-y-scroll"
 
             >
                 <FormField
@@ -136,7 +136,7 @@ export const TransactionForm = ({
                             </FormLabel>
                             <FormControl>
                                 <Select
-                                    placeholder="Select an account"
+                                    placeholder="Select category"
                                     options={categoryOptions}
                                     onCreate={onCreateCategory}
                                     value={field.value}
