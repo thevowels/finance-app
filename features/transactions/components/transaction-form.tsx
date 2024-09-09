@@ -84,10 +84,12 @@ export const TransactionForm = ({
         onDelete?.();
     }
     return(
-        <Form {...form}>
+        <Form {...form}
+
+        >
             <form
                 onSubmit={form.handleSubmit(handleSubmit)}
-                className="space-y-4 pt-4 overflow-y-scroll"
+                className="space-y-4 pt-4 "
 
             >
                 <FormField

@@ -80,7 +80,7 @@ export default function TransactionsPage() {
 
     if(transactionsQuery.isLoading){
         return(
-            <div className="max-w-screen-2xl mx-auto w-full pb-10 -mt-24">
+            <div className="max-w-screen-2xl mx-auto w-full pb-10 -mt-24 overflow-y-scroll">
                 <Card className="border-none drop-shadow-sm">
                     <CardHeader>
                         <CardTitle className="text-xl line-clamp-1">
