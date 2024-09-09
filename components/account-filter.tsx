@@ -17,16 +17,18 @@ import {useGetSummary} from "@/features/summary/api/use-get-summary";
 
 export default function AccountFilter(){
 
-    const router = useRouter();
-    const pathname = usePathname();
-
-
     const { data: accounts, isLoading: isLoadingAccounts } = useGetAccounts();
     const {data: summary, isLoading: isLoadingSummary }  = useGetSummary();
+
+
+    const router = useRouter();
+    const pathname = usePathname();
     const params = useSearchParams();
     const [accountId,setAccountId] = useState(params.get("accountId") || "all");
     const from = params.get("from") || "";
     const to = params.get("to") || "";
+
+
 
     const onChange = (newValue: string) =>{
         setAccountId(newValue);
@@ -70,7 +72,7 @@ export default function AccountFilter(){
                                 focus:bg-white/30
                                  transition"
             >
-                <SelectValue placeholder="Select an account" />
+                <SelectValue placeholder="All accounts" />
             </SelectTrigger>
             <SelectContent >
                 <SelectItem value="all" >
