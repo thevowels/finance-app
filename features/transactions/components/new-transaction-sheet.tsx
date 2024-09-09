@@ -68,7 +68,7 @@ export const NewTransactionSheet = () =>{
     }
     return(
         <Sheet open ={isOpen} onOpenChange={onClose}>
-            <SheetContent className="overflow-y-auto w-full max-h-[80vh]">
+            <SheetContent className="overflow-y-auto w-full max-h-[300px]">
                 <SheetHeader>
                     <SheetTitle>
                         New Transaction
