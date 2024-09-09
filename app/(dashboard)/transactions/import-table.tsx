@@ -23,32 +23,35 @@ export default function ImportTable({
     onTableHeadSelectChange,
                                     }: Props){
     return(
-        <div className="rounded-md border overflow-hidden">
-            <Table>
-                <TableHeader className="bg-muted">
-                    <TableRow>
-                        {headers.map((_item, index) =>(
-                            <TableHead key={index}>
-                                <TableHeadSelect
-                                    columnIndex={index}
-                                    selectedColumns={selectedColumns}
-                                    onChange={onTableHeadSelectChange}/>
-                            </TableHead>
-                        ))}
-                    </TableRow>
-                </TableHeader>
-                <TableBody>
-                    {body.map((row:string[], index) =>(
-                        <TableRow key={index}>
-                            {row.map((cell,index) =>(
-                                <TableCell key={index}>
-                                    {cell}
-                                </TableCell>
+        // <div className="rounded-md border overflow-hidden">
+        // to smooth out on import
+        <div className="rounded-md border">
+
+                <Table>
+                    <TableHeader className="bg-muted">
+                        <TableRow>
+                            {headers.map((_item, index) => (
+                                <TableHead key={index}>
+                                    <TableHeadSelect
+                                        columnIndex={index}
+                                        selectedColumns={selectedColumns}
+                                        onChange={onTableHeadSelectChange}/>
+                                </TableHead>
                             ))}
                         </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </div>
-    )
-}
+                    </TableHeader>
+                    <TableBody>
+                        {body.map((row: string[], index) => (
+                            <TableRow key={index}>
+                                {row.map((cell, index) => (
+                                    <TableCell key={index}>
+                                        {cell}
+                                    </TableCell>
+                                ))}
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </div>
+            )
+            }
