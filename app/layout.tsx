@@ -10,8 +10,23 @@ import {Toaster} from "@/components/ui/sonner";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Finance App",
-  description: "Welcome fiance",
+    title: 'Shadcn Finance',
+    description: 'Finance app to track your income & expenses..',
+    openGraph: {
+        title: 'Yours Finance',
+        description: 'Finance app to track your income & expenses..',
+        url: 'https://shadcn-finance.vercel.app',
+        siteName: 'Shadcn Finance',
+        type: 'website',
+        images: [
+            {
+                url: 'https://www.example.com/shadcn-logo.png',
+                width: 800,
+                height: 600,
+                alt: 'Shadcn Finance Logo',
+            },
+        ],
+    },
 };
 
 export default function RootLayout({
@@ -22,15 +37,6 @@ export default function RootLayout({
   return (
       <ClerkProvider afterSignOutUrl={"/"} >
         <html lang="en">
-        <head>
-            <meta property="og:title" content="Yours Finance"/>
-            <meta property="og:description" content="Finance app to track your income & expenses.."/>
-            <meta property="og:image" content="https://www.example.com/shadcn-logo.png"/>
-            <meta property="og:url" content="https://shadcn-finance.vercel.app"/>
-            <meta property="og:type" content="website"/>
-            <meta property="og:site_name" content="Shadcn Finance"/>
-
-        </head>
         <body className={inter.className}>
         <QueryProvider>
             <SheetProvider/>
