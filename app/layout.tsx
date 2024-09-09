@@ -22,12 +22,21 @@ export default function RootLayout({
   return (
       <ClerkProvider afterSignOutUrl={"/"} >
         <html lang="en">
+        <head>
+            <meta property="og:title" content="Yours Finance"/>
+            <meta property="og:description" content="Finance app to track your income & expenses.."/>
+            <meta property="og:image" content="https://www.example.com/shadcn-logo.png"/>
+            <meta property="og:url" content="https://shadcn-finance.vercel.app"/>
+            <meta property="og:type" content="website"/>
+            <meta property="og:site_name" content="Shadcn Finance"/>
+
+        </head>
         <body className={inter.className}>
-            <QueryProvider>
-                <SheetProvider/>
-                <Toaster/>
-                {children}
-            </QueryProvider>
+        <QueryProvider>
+            <SheetProvider/>
+            <Toaster/>
+            {children}
+        </QueryProvider>
         </body>
         </html>
       </ClerkProvider>
