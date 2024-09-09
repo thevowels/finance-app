@@ -89,7 +89,7 @@ export const TransactionForm = ({
         >
             <form
                 onSubmit={form.handleSubmit(handleSubmit)}
-                className="space-y-4 pt-4 max-h-screen"
+                className="space-y-4 pt-4 max-h-[80%]"
 
             >
                 <FormField
@@ -149,23 +149,6 @@ export const TransactionForm = ({
                         </FormItem>
                     )}/>
                 <FormField
-                    name ="payee"
-                    control={form.control}
-                    render={({field})=>(
-                        <FormItem>
-                            <FormLabel>
-                                Payee
-                            </FormLabel>
-                            <FormControl>
-                                <Input
-                                    disabled={disabled}
-                                    placeholder="Add a payee"
-                                    {...field}
-                                />
-                            </FormControl>
-                        </FormItem>
-                    )}/>
-                <FormField
                     name ="amount"
                     control={form.control}
                     render={({field})=>(
@@ -200,6 +183,24 @@ export const TransactionForm = ({
                             </FormControl>
                         </FormItem>
                     )}/>
+                <FormField
+                    name ="payee"
+                    control={form.control}
+                    render={({field})=>(
+                        <FormItem>
+                            <FormLabel>
+                                Payee
+                            </FormLabel>
+                            <FormControl>
+                                <Input
+                                    disabled={disabled}
+                                    placeholder="Add a payee"
+                                    {...field}
+                                />
+                            </FormControl>
+                        </FormItem>
+                    )}/>
+
                 <Button className="w-full " disabled={disabled}>
                     {id ? "Save changes": "Create Transaction"}
                 </Button>
