@@ -67,7 +67,6 @@ export default function Chart({ data = [] }: Props){
                     >
                     Transactions
 
-                    {/* TODO: Add Select*/}
                 </CardTitle>
                 <Select
                     defaultValue={chartType.area}

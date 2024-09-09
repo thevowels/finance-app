@@ -17,8 +17,8 @@ export const useCreateTransaction = () =>{
         },
         onSuccess: () =>{
             queryClient.invalidateQueries({queryKey:["transactions"]})
+            queryClient.invalidateQueries({queryKey:["summary"]})
             toast.success("Transaction Created")
-            //TODO: Invalidate summary
         },
         onError: () =>{
             toast.error("Failed to create Transaction")

@@ -77,7 +77,7 @@ export const NewTransactionSheet = () =>{
                         Create a new Transaction
                     </SheetDescription>
                 </SheetHeader>
-                <p>TODO: Transaction Form</p>
+                <p>Transaction Form</p>
                 {isLoading
                 ?(
                     <div className="absolute inset-0 flex items-center justify-center " >

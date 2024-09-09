@@ -69,7 +69,6 @@ export default function SpendingPie({ data = [] }: Props){
                     >
                     Transact
 
-                    {/* TODO: Add Select*/}
                 </CardTitle>
                 <Select
                     defaultValue={chartType.pie}
